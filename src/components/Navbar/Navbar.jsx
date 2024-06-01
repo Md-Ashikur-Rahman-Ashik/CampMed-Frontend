@@ -123,7 +123,10 @@ const Navbar = () => {
             </ul>
           </div>
         ) : (
-          <NavLink to="/login" className="btn-ghost btn font-bold ml-10 md:ml-0">
+          <NavLink
+            to="/login"
+            className="btn-ghost btn font-bold ml-10 md:ml-0"
+          >
             Login
           </NavLink>
         )}
