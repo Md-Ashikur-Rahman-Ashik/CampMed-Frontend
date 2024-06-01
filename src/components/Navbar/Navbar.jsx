@@ -72,7 +72,7 @@ const Navbar = () => {
         <div className="text-green-500">
           <div className="flex items-center gap-2">
             <img
-              className="rounded-xl w-1/6"
+              className="rounded-xl w-1/3 md:w-1/6"
               src="https://i.ibb.co/TBGnCfF/camp-Med-Logo.png"
               alt=""
             />
@@ -123,7 +123,7 @@ const Navbar = () => {
             </ul>
           </div>
         ) : (
-          <NavLink to="/login" className="btn-ghost btn font-bold">
+          <NavLink to="/login" className="btn-ghost btn font-bold ml-10 md:ml-0">
             Login
           </NavLink>
         )}
