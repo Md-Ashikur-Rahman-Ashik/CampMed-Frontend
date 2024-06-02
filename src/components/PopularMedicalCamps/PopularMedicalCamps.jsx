@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import MedicalCampCard from "./MedicalCampCard";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";

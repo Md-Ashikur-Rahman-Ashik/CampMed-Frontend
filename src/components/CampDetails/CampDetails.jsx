@@ -1,6 +1,23 @@
-import { Link, ScrollRestoration, useLoaderData } from "react-router-dom";
+import { useContext } from "react";
+import {
+  Link,
+  ScrollRestoration,
+  useLoaderData,
+  useNavigate,
+} from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const CampDetails = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const { user } = useContext(AuthContext);
   const camp = useLoaderData();
   const {
     campName,
@@ -14,6 +31,56 @@ const CampDetails = () => {
     description,
     _id,
   } = camp;
+
+  const navigate = useNavigate();
+
+  const onSubmit = (data) => {
+    const participantEmail = user?.email;
+    const participantName = user?.displayName;
+    const age = parseInt(data.age);
+    const phoneNumber = parseInt(data.phoneNumber);
+    const emergency = parseInt(data.emergency);
+
+    const handleIncrease = () => {
+      axios.put(`http://localhost:5000/participant/${_id}`, {
+        withCredential: true,
+      });
+    };
+
+    const newParticipant = {
+      campName,
+      campFees,
+      location,
+      healthcareProfessional,
+      participantEmail,
+      participantName,
+      age,
+      phoneNumber,
+      emergency,
+    };
+
+    axios
+      .post("http://localhost:5000/participant", newParticipant)
+      .then((res) => {
+        if (res.data.insertedId) {
+          handleIncrease();
+          Swal.fire({
+            title: "Success!",
+            text: "Joining Request Send Successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+          navigate("/");
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "Joining Request failed",
+            icon: "error",
+            confirmButtonText: "Exit",
+          });
+        }
+      });
+  };
 
   return (
     <div className="container p-6 mx-auto min-h-[calc(100vh-349px)]">
@@ -63,16 +130,82 @@ const CampDetails = () => {
           Join Camp
         </label>
         {/* Put this part before </body> tag */}
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input type="checkbox" id="my_modal_6" className="modal-toggle" />
           <div className="modal" role="dialog">
             <div className="modal-box">
-              <h3 className="font-bold text-lg">Hello!</h3>
-              <p className="py-4">This modal works with a hidden checkbox!</p>
-              <div className="modal-action">
-                <label htmlFor="my_modal_6" className="btn">
-                  Close!
+              <h3 className="font-bold text-center text-lg">{campName}</h3>
+              <h3 className="font-bold text-lg">Camp Fee: ${campFees}</h3>
+              <h3 className="font-bold text-lg">Location: {location}</h3>
+              <h3 className="font-bold text-lg">
+                Healthcare Professional: {healthcareProfessional}
+              </h3>
+              <h3 className="text-green-900 font-bold text-lg">
+                Participant Name: {user?.displayName}
+              </h3>
+              <h3 className="text-green-900 font-bold text-lg">
+                Participant Email: {user?.email}
+              </h3>
+              <div className="space-y-2">
+                <label htmlFor="age" className="block text-green-900 font-bold">
+                  Age
                 </label>
+                <input
+                  type="number"
+                  {...register("age", { required: true })}
+                  placeholder="Your Age"
+                  className="w-full px-3 py-2 border rounded-md border-gray-700 bg-gray-900 text-gray-100 focus:border-violet-400"
+                />
+              </div>
+              <div className="space-y-2 mt-2">
+                <label htmlFor="age" className="block text-green-900 font-bold">
+                  Phone Number
+                </label>
+                <input
+                  type="number"
+                  {...register("phoneNumber", { required: true })}
+                  placeholder="Your Phone Number"
+                  className="w-full px-3 py-2 border rounded-md border-gray-700 bg-gray-900 text-gray-100 focus:border-violet-400"
+                />
+              </div>
+              <div className="space-y-2 mt-2">
+                <label htmlFor="age" className="block text-green-900 font-bold">
+                  Gender
+                </label>
+                <input
+                  type="text"
+                  {...register("gender", { required: true })}
+                  placeholder="Your Gender"
+                  className="w-full px-3 py-2 border rounded-md border-gray-700 bg-gray-900 text-gray-100 focus:border-violet-400"
+                />
+              </div>
+              <div className="space-y-2 mt-2">
+                <label htmlFor="age" className="block text-green-900 font-bold">
+                  Emergency Contact Number
+                </label>
+                <input
+                  type="text"
+                  {...register("emergency", { required: true })}
+                  placeholder="Your Emergency Contact Number"
+                  className="w-full px-3 py-2 border rounded-md border-gray-700 bg-gray-900 text-gray-100 focus:border-violet-400"
+                />
+              </div>
+              <div className="flex justify-center items-center gap-4">
+                <div className="flex justify-center">
+                  <input
+                    type="submit"
+                    value="Join"
+                    className="font-bold btn mt-4 bg-green-50 text-green-900"
+                  />
+                </div>
+                <div className="modal-action">
+                  <label
+                    htmlFor="my_modal_6"
+                    className="btn text-red-600 font-bold"
+                  >
+                    Cancel
+                  </label>
+                </div>
               </div>
             </div>
           </div>
