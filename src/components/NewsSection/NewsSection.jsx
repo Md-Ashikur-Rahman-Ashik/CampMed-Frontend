@@ -73,7 +73,7 @@ const NewsSection = () => {
 
   return (
     <div className="bg-green-50 p-6 container rounded-xl mx-auto mt-20">
-      <div className="bg-green-600 text-white py-2 text-center mb-6">
+      <div className="bg-green-600 rounded-xl text-white py-2 text-center mb-6">
         <marquee direction="left">
           {newsData.headlineTicker.join(" | ")}
         </marquee>
