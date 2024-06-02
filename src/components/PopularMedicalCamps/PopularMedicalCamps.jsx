@@ -23,8 +23,8 @@ const PopularMedicalCamps = () => {
         Popular Medical Camps
       </h2>
       <div className="grid grid-cols-1 mt-10 gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {campsQuery.data
-          .map((camp) => (
+        {campsQuery?.data
+          ?.map((camp) => (
             <MedicalCampCard key={camp._id} camp={camp}></MedicalCampCard>
           ))
           .slice(0, 6)}
@@ -32,7 +32,7 @@ const PopularMedicalCamps = () => {
       <div className="flex justify-center mt-10">
         <Link
           to={"/available-camps"}
-          className="font-bold text-xl btn w-1/3 bg-green-50 text-green-500"
+          className="font-bold text-xl btn md:w-1/3 bg-green-50 text-green-500"
         >
           See All Camps
         </Link>
