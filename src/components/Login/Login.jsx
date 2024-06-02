@@ -3,6 +3,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Login = () => {
   const { user, logInUser, googleUser, setLoading } = useContext(AuthContext);
@@ -49,13 +50,20 @@ const Login = () => {
 
   const handleGoogleUser = () => {
     googleUser()
-      .then(() => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Login with Google account successful",
-          showConfirmButton: false,
-          timer: 1500,
+      .then((data) => {
+        // console.log(data);
+        const userInfo = {
+          name: data.user.displayName,
+          email: data.user.email,
+        };
+        axios.post("http://localhost:5000/users", userInfo).then(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User registration Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         });
         setLoading(false);
 

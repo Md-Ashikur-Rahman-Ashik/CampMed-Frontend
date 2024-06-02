@@ -3,6 +3,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Register = () => {
   const {
@@ -26,12 +27,20 @@ const Register = () => {
       const result = await registerUser(data.email, data.password);
       await updateUserProfile(data.name, data.photo);
       setUser({ ...user, photoURL: data.photo, displayName: data.name });
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "User registration Successful",
-        showConfirmButton: false,
-        timer: 1500,
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+      };
+      axios.post("http://localhost:5000/users", userInfo).then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User registration Successful",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       });
       setLoading(false);
 
@@ -166,6 +175,7 @@ const Register = () => {
         </div>
         <input
           type="submit"
+          value={"Sign Up"}
           className="w-full px-8 py-3 font-semibold rounded-md bg-green-100 text-green-900 btn"
         />
       </form>

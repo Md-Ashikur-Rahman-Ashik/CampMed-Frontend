@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../../firebase/firebase.config";
+import axios from "axios";
 
 const auth = getAuth(app);
 export const AuthContext = createContext(null);
@@ -48,37 +49,20 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      const userEmail = currentUser?.email || user?.email;
-      const loggedUser = { email: userEmail };
       setUser(currentUser);
+      if (currentUser) {
+        // Get token and store it on the client side
+        const userInfo = { email: currentUser.email };
+        axios.post("http://localhost:5000/jwt", userInfo).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("accessToken", res.data.token);
+          }
+        });
+      } else {
+        //  removed token(if token is stored in the client side)
+        localStorage.removeItem("accessToken");
+      }
       setLoading(false);
-
-      // If user exists, then a token will be issue
-      //   if (currentUser) {
-      //     axios
-      //       .post(
-      //         "https://b9a11-server-side-md-ashikur-rahman-ashik.vercel.app/jwt",
-      //         loggedUser,
-      //         {
-      //           withCredentials: true,
-      //         }
-      //       )
-      //       .then((res) => {
-      //         console.log(res.data);
-      //       });
-      //   } else {
-      //     axios
-      //       .post(
-      //         "https://b9a11-server-side-md-ashikur-rahman-ashik.vercel.app/logout",
-      //         loggedUser,
-      //         {
-      //           withCredentials: true,
-      //         }
-      //       )
-      //       .then((res) => {
-      //         console.log(res.data);
-      //       });
-      //   }
     });
     return () => {
       unSubscribe();
