@@ -92,7 +92,9 @@ const NewsSection = () => {
           {newsData.featuredArticle.title}
         </h3>
         <p className="mb-4">{newsData.featuredArticle.summary}</p>
-        <span className="text-green-600 underline cursor-pointer">Read More</span>
+        <span className="text-green-600 underline cursor-pointer">
+          Read More
+        </span>
       </div>
 
       <div className="mb-8">
@@ -101,7 +103,10 @@ const NewsSection = () => {
         </h2>
         <div className="flex flex-wrap -mx-2">
           {newsData.recentUpdates.map((update, index) => (
-            <div key={index} className="w-full rounded-xl hover:scale-105 transition-transform md:w-1/3 px-2 mb-4">
+            <div
+              key={index}
+              className="w-full rounded-xl hover:scale-105 transition-transform md:w-1/3 px-2 mb-4"
+            >
               <div className="bg-white p-4 border rounded">
                 <img
                   src={update.image}
@@ -111,9 +116,9 @@ const NewsSection = () => {
                 <h3 className="text-lg font-semibold mb-1">{update.title}</h3>
                 <p className="text-sm text-gray-500 mb-2">{update.date}</p>
                 <p className="mb-2">{update.summary}</p>
-                <a href={update.link} className="text-green-600 underline">
+                <span className="text-green-600 underline cursor-pointer">
                   Learn More
-                </a>
+                </span>
               </div>
             </div>
           ))}
@@ -121,27 +126,30 @@ const NewsSection = () => {
       </div>
 
       <div className="mb-8">
-        <h2 className="text-2xl font-bold text-green-600 mb-4">
+        <h2 className="text-2xl font-bold text-center text-green-600 mb-4">
           Upcoming Events
         </h2>
         <ul className="list-disc list-inside">
           {newsData.upcomingEvents.map((event, index) => (
             <li key={index} className="mb-2">
-              <a href={event.link} className="text-green-600 underline">
+              <span className="text-green-600 underline cursor-pointer">
                 {event.eventName} - {event.date}, {event.location}
-              </a>
+              </span>
             </li>
           ))}
         </ul>
       </div>
 
       <div>
-        <h2 className="text-2xl font-bold text-green-600 mb-4">
+        <h2 className="text-2xl font-bold text-center text-green-600 mb-4">
           Success Stories
         </h2>
         <div className="flex flex-wrap -mx-2">
           {newsData.successStories.map((story, index) => (
-            <div key={index} className="w-full md:w-1/2 px-2 mb-4">
+            <div
+              key={index}
+              className="w-full hover:scale-y-105 transition-transform md:w-1/2 px-2 mb-4"
+            >
               <div className="bg-white p-4 border rounded">
                 <img
                   src={story.image}
@@ -150,9 +158,9 @@ const NewsSection = () => {
                 />
                 <h3 className="text-lg font-semibold mb-1">{story.title}</h3>
                 <p className="mb-2">{story.summary}</p>
-                <a href={story.link} className="text-green-600 underline">
+                <span className="text-green-600 underline cursor-pointer">
                   Read More
-                </a>
+                </span>
               </div>
             </div>
           ))}
