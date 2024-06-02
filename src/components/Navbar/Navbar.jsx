@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { Link, NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { signOutUser, user, loading } = useContext(AuthContext);
@@ -30,7 +31,7 @@ const Navbar = () => {
       </li>
       {!user && (
         <li>
-          <NavLink className="font-bold" to="/register">
+          <NavLink className="font-bold" to="/login">
             Join Us
           </NavLink>
         </li>
@@ -40,6 +41,13 @@ const Navbar = () => {
 
   const handleSignOut = () => {
     signOutUser();
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "User logout successful",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (
@@ -86,7 +94,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end dropdown flex justify-normal">
-        {user ? (
+        {user && (
           <div className="dropdown dropdown-end flex">
             <div
               tabIndex={0}
@@ -96,8 +104,7 @@ const Navbar = () => {
               <div className="w-10 rounded-full">
                 <img
                   referrerPolicy="no-referrer"
-                  alt="Tailwind CSS Navbar component"
-                  title={user?.displayName}
+                  alt={user?.displayName}
                   src={user?.photoURL}
                 />
               </div>
@@ -106,15 +113,13 @@ const Navbar = () => {
               tabIndex={0}
               className="mt-3 z-50 p-2 shadow top-10 menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
-              <li>
-                <NavLink to={"/dashboard"} className="justify-between">
-                  Dashboard
-                </NavLink>
+              <li className="text-center text-green-900 font-bold">{user?.displayName}</li>
+              <li className="w-1/2 mx-auto text-black font-bold">
+                <Link to={"/dashboard"}>Dashboard</Link>
               </li>
-              <li>
+              <li className="w-1/2 mx-auto">
                 <Link
-                  className="btn btn-ghost font-bold"
-                  to={`/manage-my-post`}
+                  className="flex justify-center btn-ghost font-bold"
                   onClick={handleSignOut}
                 >
                   LogOut
@@ -122,13 +127,6 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-        ) : (
-          <NavLink
-            to="/login"
-            className="btn-ghost btn font-bold ml-10 md:ml-0"
-          >
-            Login
-          </NavLink>
         )}
       </div>
     </div>
