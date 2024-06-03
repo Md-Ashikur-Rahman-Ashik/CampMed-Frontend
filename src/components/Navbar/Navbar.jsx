@@ -77,10 +77,10 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <div className="text-green-500">
-          <div className="flex items-center gap-2">
+        <div className="text-green-500 max-w-min">
+          <div className="flex items-center">
             <img
-              className="rounded-xl w-1/3 md:w-1/6"
+              className="rounded-xl w-1/2"
               src="https://i.ibb.co/TBGnCfF/camp-Med-Logo.png"
               alt=""
             />
@@ -93,7 +93,7 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
-      <div className="navbar-end dropdown flex justify-normal">
+      <div className="navbar-end dropdown flex justify-end md:justify-normal">
         {user && (
           <div className="dropdown dropdown-end flex">
             <div

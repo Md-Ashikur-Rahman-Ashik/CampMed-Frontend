@@ -6,6 +6,8 @@ import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layout/Dashboard/Dashboard";
+import AdminRoute from "./AdminRoute";
+import OrganizerProfile from "../layout/OrganizerProfile/OrganizerProfile";
 
 const router = createBrowserRouter([
   {
@@ -42,9 +44,14 @@ const router = createBrowserRouter([
     children: [
       // Admin routes
       {
-        
-      }
-    ]
+        path: "organizer-profile",
+        element: (
+          <AdminRoute>
+            <OrganizerProfile></OrganizerProfile>
+          </AdminRoute>
+        ),
+      },
+    ],
   },
 ]);
 

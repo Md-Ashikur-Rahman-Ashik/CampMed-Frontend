@@ -9,9 +9,9 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
 
   return (
-    <div className="flex md:flex-row">
+    <div className="flex flex-col md:flex-row">
       {/* Dashboard sidebar */}
-      <div className="w-64 min-h-screen bg-green-50">
+      <div className="md:w-64 md:min-h-screen bg-green-50">
         <ul className="menu p-4">
           {isAdmin ? (
             <>
