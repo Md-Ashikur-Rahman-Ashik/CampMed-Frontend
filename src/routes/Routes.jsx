@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layout/Dashboard/Dashboard";
 import AdminRoute from "./AdminRoute";
 import OrganizerProfile from "../layout/OrganizerProfile/OrganizerProfile";
+import AvailCamps from "../components/AvailableCamps/AvailCamps";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/available-camps",
+        element: <AvailCamps></AvailCamps>,
       },
     ],
   },

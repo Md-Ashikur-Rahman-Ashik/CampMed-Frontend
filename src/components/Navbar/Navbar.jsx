@@ -113,9 +113,11 @@ const Navbar = () => {
               tabIndex={0}
               className="mt-3 z-50 p-2 shadow top-10 menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
-              <li className="text-center text-green-900 font-bold">{user?.displayName}</li>
+              <li className="text-center text-green-900 font-bold">
+                {user?.displayName}
+              </li>
               <li className="w-1/2 mx-auto text-black font-bold">
-                <Link to={"/dashboard"}>Dashboard</Link>
+                <Link to={"/dashboard/organizer-profile"}>Dashboard</Link>
               </li>
               <li className="w-1/2 mx-auto">
                 <Link
