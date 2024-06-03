@@ -4,6 +4,8 @@ import Main from "../components/Main/Main";
 import CampDetails from "../components/CampDetails/CampDetails";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
+import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../layout/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,20 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
     ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
+      // Admin routes
+      {
+        
+      }
+    ]
   },
 ]);
 
