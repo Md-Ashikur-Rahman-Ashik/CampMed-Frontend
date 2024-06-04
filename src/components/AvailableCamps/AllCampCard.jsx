@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const AllCampCard = ({ camp }) => {
   return (
     <div className="card mt-6 card-compact bg-base-100 hover:scale-105 transition-transform shadow-xl">
@@ -22,8 +24,12 @@ const AllCampCard = ({ camp }) => {
         <h2 className="text-xl font-bold text-center">
           {camp.shortDescription}
         </h2>
-        <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+        <div className="card-actions justify-center mt-4">
+          <Link to={`/camp-details/${camp._id}`}>
+            <button className="btn text-green-900 bg-green-50 font-bold mb-4">
+              Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>

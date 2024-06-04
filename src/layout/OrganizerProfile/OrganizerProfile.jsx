@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useUser from "../../hooks/useUser";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const OrganizerProfile = () => {
   const { user } = useContext(AuthContext);
@@ -14,6 +15,7 @@ const OrganizerProfile = () => {
     reset,
     formState: { errors },
   } = useForm();
+  const axiosSecure = useAxiosSecure();
 
   // console.log(adminUser);
   if (loading) {
@@ -41,20 +43,18 @@ const OrganizerProfile = () => {
       contact: contact,
     };
 
-    axios
-      .put(`http://localhost:5000/user/${userId}`, updateInfo)
-      .then((res) => {
-        if (res.data.modifiedCount) {
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `Information updated successfully`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+    axiosSecure.put(`/user/${userId}`, updateInfo).then((res) => {
+      if (res.data.modifiedCount) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Information updated successfully`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   return (

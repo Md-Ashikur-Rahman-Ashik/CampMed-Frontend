@@ -113,10 +113,7 @@ const CampDetails = () => {
           }`}
         </p>
         <p className="font-bold justify-center text-center flex items-center text-xl border-2 border-green-400 rounded-xl p-2">
-          {`Participants:
-          ${
-            participantCount ? participantCount : " No Participants Mentioned"
-          } Person`}
+          {`Participants: ${participantCount} Person`}
         </p>
       </div>
       <p className="mt-10 text-center text-xl font-bold">

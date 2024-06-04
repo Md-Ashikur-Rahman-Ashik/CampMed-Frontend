@@ -9,6 +9,7 @@ import Dashboard from "../layout/Dashboard/Dashboard";
 import AdminRoute from "./AdminRoute";
 import OrganizerProfile from "../layout/OrganizerProfile/OrganizerProfile";
 import AvailCamps from "../components/AvailableCamps/AvailCamps";
+import AddCamp from "../layout/AddCamp/AddCamp";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <OrganizerProfile></OrganizerProfile>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "add-camp",
+        element: (
+          <AdminRoute>
+            <AddCamp></AddCamp>
           </AdminRoute>
         ),
       },
