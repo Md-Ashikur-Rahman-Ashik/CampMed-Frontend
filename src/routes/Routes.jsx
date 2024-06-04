@@ -12,6 +12,7 @@ import AvailCamps from "../components/AvailableCamps/AvailCamps";
 import AddCamp from "../layout/AddCamp/AddCamp";
 import ManageCamps from "../layout/ManageCamps/ManageCamps";
 import UpdateCamp from "../layout/UpdateCamp/UpdateCamp";
+import Welcome from "../layout/Welcome/Welcome";
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/camp/${params.id}`),
+      },
+      {
+        path: "welcome",
+        element: <Welcome></Welcome>,
       },
     ],
   },

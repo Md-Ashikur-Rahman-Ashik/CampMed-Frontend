@@ -117,7 +117,7 @@ const Navbar = () => {
                 {user?.displayName}
               </li>
               <li className="w-1/2 mx-auto text-black font-bold">
-                <Link to={"/dashboard/organizer-profile"}>Dashboard</Link>
+                <Link to={"/dashboard/welcome"}>Dashboard</Link>
               </li>
               <li className="w-1/2 mx-auto">
                 <Link

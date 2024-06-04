@@ -1,8 +1,11 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { CgProfile } from "react-icons/cg";
-import { IoIosAddCircle } from "react-icons/io";
+import { IoIosAddCircle, IoMdAnalytics } from "react-icons/io";
 import { MdManageAccounts, MdOutlineManageAccounts } from "react-icons/md";
+import { GiAmericanFootballPlayer } from "react-icons/gi";
+import { PiCampfireFill } from "react-icons/pi";
+import { FaHistory } from "react-icons/fa";
 
 const Dashboard = () => {
   // Get admin value from the database
@@ -49,7 +52,40 @@ const Dashboard = () => {
               </li>
             </>
           ) : (
-            <></>
+            <>
+              <li>
+                <NavLink
+                  className={"font-bold text-green-900"}
+                  to={"/dashboard/analytics"}
+                >
+                  <IoMdAnalytics /> Analytics
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={"font-bold text-green-900"}
+                  to={"/dashboard/participant-profile"}
+                >
+                  <GiAmericanFootballPlayer /> Participant Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={"font-bold text-green-900"}
+                  to={"/dashboard/registered-camps"}
+                >
+                  <PiCampfireFill /> Registered Camps
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={"font-bold text-green-900"}
+                  to={"/dashboard/payment-history"}
+                >
+                  <FaHistory /> Payment History
+                </NavLink>
+              </li>
+            </>
           )}
         </ul>
       </div>

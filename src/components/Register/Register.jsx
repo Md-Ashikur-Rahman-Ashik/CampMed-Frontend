@@ -31,16 +31,14 @@ const Register = () => {
         name: data.name,
         email: data.email,
       };
-      axios.post("http://localhost:5000/users", userInfo).then((res) => {
-        if (res.data.insertedId) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "User registration Successful",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
+      axios.post("http://localhost:5000/users", userInfo).then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User registration Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
       setLoading(false);
 
