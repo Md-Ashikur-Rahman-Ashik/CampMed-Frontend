@@ -1,6 +1,35 @@
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const OrganizerRow = ({ vol, refetch }) => {
+  const axiosSecure = useAxiosSecure();
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/delete-camp/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your Post has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
   return (
     <>
       <td className="md:text-xl">{vol.campName}</td>
@@ -17,7 +46,7 @@ const OrganizerRow = ({ vol, refetch }) => {
       </td>
       <td className="">
         <button
-          onClick={() => handleDelete(_id)}
+          onClick={() => handleDelete(vol._id)}
           className="btn btn-sm text-gray-900 font-bold hover:bg-red-500 bg-red-400"
         >
           Delete
