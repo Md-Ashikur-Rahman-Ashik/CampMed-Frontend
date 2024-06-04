@@ -10,6 +10,7 @@ import AdminRoute from "./AdminRoute";
 import OrganizerProfile from "../layout/OrganizerProfile/OrganizerProfile";
 import AvailCamps from "../components/AvailableCamps/AvailCamps";
 import AddCamp from "../layout/AddCamp/AddCamp";
+import ManageCamps from "../layout/ManageCamps/ManageCamps";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AddCamp></AddCamp>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage-camps",
+        element: (
+          <AdminRoute>
+            <ManageCamps></ManageCamps>
           </AdminRoute>
         ),
       },

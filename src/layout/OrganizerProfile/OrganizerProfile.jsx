@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../components/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import Swal from "sweetalert2";
 import useUser from "../../hooks/useUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";

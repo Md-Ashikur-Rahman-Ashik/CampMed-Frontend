@@ -2,8 +2,11 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../components/AuthProvider/AuthProvider";
 
 const AddCamp = () => {
+  const { user } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -24,6 +27,7 @@ const AddCamp = () => {
       participantCount: 0,
       description: data.description,
       shortDescription: data.shortDescription,
+      email: user?.email,
     };
 
     // console.log(addItem);
@@ -44,8 +48,15 @@ const AddCamp = () => {
           });
         }
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(() => {
+        // console.error(error);
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Adding camp failed",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
 
