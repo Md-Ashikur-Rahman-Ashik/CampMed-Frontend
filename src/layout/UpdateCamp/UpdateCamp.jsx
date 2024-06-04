@@ -1,12 +1,11 @@
 import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import axios from "axios";
-import { useContext } from "react";
-import { AuthContext } from "../../components/AuthProvider/AuthProvider";
 
-const AddCamp = () => {
-  const { user } = useContext(AuthContext);
+const UpdateCamp = () => {
+  const camp = useLoaderData();
+  // console.log(camp);
   const {
     register,
     handleSubmit,
@@ -16,7 +15,7 @@ const AddCamp = () => {
   const axiosSecure = useAxiosSecure();
 
   const onSubmit = (data) => {
-    const addItem = {
+    const updateCamp = {
       campName: data.campName,
       campFees: parseInt(data.campFees),
       image: data.image,
@@ -27,37 +26,25 @@ const AddCamp = () => {
       participantCount: 0,
       description: data.description,
       shortDescription: data.shortDescription,
-      email: user?.email,
     };
 
-    // console.log(addItem);
-
-    axiosSecure
-      .post("/camps", addItem)
-      .then((res) => {
-        // console.log(res.data);
-        if (res.data.insertedId) {
-          // Show success popup
-          reset();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${data.campName} is added successfully`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      })
-      .catch(() => {
-        // console.error(error);
+    axiosSecure.patch(`/camp/${camp._id}`, updateCamp).then((res) => {
+      if (res.data.modifiedCount) {
         Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: "Adding camp failed",
-          showConfirmButton: false,
-          timer: 1500,
+          title: "Success!",
+          text: "Camp Post Updated Successfully",
+          icon: "success",
+          confirmButtonText: "Cool",
         });
-      });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Updating Camp Post Failed",
+          icon: "error",
+          confirmButtonText: "Exit",
+        });
+      }
+    });
   };
 
   return (
@@ -77,6 +64,7 @@ const AddCamp = () => {
                   {...register("campName", { required: true })}
                   type="text"
                   placeholder="Camp Name"
+                  defaultValue={`${camp.campName}`}
                   className="w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700"
                 />
               </div>
@@ -86,6 +74,7 @@ const AddCamp = () => {
                   {...register("image", { required: true })}
                   type="text"
                   placeholder="Photo URL"
+                  defaultValue={`${camp.image}`}
                   className="w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700"
                 />
               </div>
@@ -95,6 +84,7 @@ const AddCamp = () => {
                   {...register("campFees", { required: true })}
                   type="number"
                   placeholder="Camp Fees"
+                  defaultValue={`${camp.campFees}`}
                   className="w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700"
                 />
               </div>
@@ -104,6 +94,7 @@ const AddCamp = () => {
                   {...register("description", { required: true })}
                   type="text"
                   placeholder="Long Description"
+                  defaultValue={`${camp.description}`}
                   className="w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700"
                 />
               </div>
@@ -113,6 +104,7 @@ const AddCamp = () => {
                   {...register("shortDescription", { required: true })}
                   type="text"
                   placeholder="Short Description"
+                  defaultValue={`${camp.shortDescription}`}
                   className="w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700"
                 />
               </div>
@@ -122,6 +114,7 @@ const AddCamp = () => {
                   {...register("time", { required: true })}
                   type="text"
                   placeholder="10:00"
+                  defaultValue={`${camp.time}`}
                   className="w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700"
                 />
               </div>
@@ -131,6 +124,7 @@ const AddCamp = () => {
                   {...register("location", { required: true })}
                   type="text"
                   placeholder="Location"
+                  defaultValue={`${camp.location}`}
                   className="w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700"
                 />
               </div>
@@ -142,6 +136,7 @@ const AddCamp = () => {
                   {...register("healthcareProfessional", { required: true })}
                   type="text"
                   placeholder="Healthcare Professional Name"
+                  defaultValue={`${camp.healthcareProfessional}`}
                   className="w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700"
                 />
               </div>
@@ -160,6 +155,7 @@ const AddCamp = () => {
                   {...register("date", { required: true })}
                   type="text"
                   placeholder={"15-07-2024"}
+                  defaultValue={`${camp.date}`}
                   className="w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-violet-400 border-gray-700"
                 />
               </div>
@@ -168,7 +164,7 @@ const AddCamp = () => {
           <div className="flex justify-center">
             <input
               type="submit"
-              value="Add Camp"
+              value="Update Camp"
               className="btn bg-green-100 text-green-900"
             />
           </div>
@@ -178,4 +174,4 @@ const AddCamp = () => {
   );
 };
 
-export default AddCamp;
+export default UpdateCamp;

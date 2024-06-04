@@ -4,7 +4,6 @@ import OrganizerRow from "./OrganizerRow";
 const ManageCamps = () => {
   const [organizer, refetch, loading] = useCampOrganizer();
   //   console.log(organizer);
-  refetch();
   if (loading) {
     return (
       <div className="flex justify-center items-center">
@@ -23,7 +22,7 @@ const ManageCamps = () => {
           Your Volunteer Request Posts will be shown here
         </h2>
       )}
-      <div className="overflow-x-auto">
+      <div className="overflow-auto">
         <table className="table">
           {/* head */}
           {organizer?.length > 0 && (
@@ -42,7 +41,7 @@ const ManageCamps = () => {
           <tbody>
             {organizer.map((vol) => (
               <tr key={vol._id}>
-                <OrganizerRow vol={vol}></OrganizerRow>
+                <OrganizerRow vol={vol} refetch={refetch}></OrganizerRow>
               </tr>
             ))}
           </tbody>

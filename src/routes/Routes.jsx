@@ -11,6 +11,7 @@ import OrganizerProfile from "../layout/OrganizerProfile/OrganizerProfile";
 import AvailCamps from "../components/AvailableCamps/AvailCamps";
 import AddCamp from "../layout/AddCamp/AddCamp";
 import ManageCamps from "../layout/ManageCamps/ManageCamps";
+import UpdateCamp from "../layout/UpdateCamp/UpdateCamp";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,16 @@ const router = createBrowserRouter([
             <ManageCamps></ManageCamps>
           </AdminRoute>
         ),
+      },
+      {
+        path: "update-camp/:id",
+        element: (
+          <AdminRoute>
+            <UpdateCamp></UpdateCamp>
+          </AdminRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/camp/${params.id}`),
       },
     ],
   },
