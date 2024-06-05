@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { AuthContext } from "../../components/AuthProvider/AuthProvider";
-import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
 import useUser from "../../hooks/useUser";
+import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
-const OrganizerProfile = () => {
+const ParticipantProfile = () => {
   const { user, updateUserProfile, setUser } = useContext(AuthContext);
+  //   console.log(user);
   const [adminUser, refetch, loading] = useUser();
   const {
     register,
@@ -16,7 +17,8 @@ const OrganizerProfile = () => {
   } = useForm();
   const axiosSecure = useAxiosSecure();
 
-  // console.log(adminUser);
+  //   console.log(adminUser)
+
   if (loading) {
     return (
       <div className="flex justify-center items-center">
@@ -27,20 +29,18 @@ const OrganizerProfile = () => {
       </div>
     );
   }
-  const adminName = adminUser?.name;
-  // console.log(adminName);
 
   const onSubmit = (data) => {
-    const organizerName = data.name;
+    const participantName = data.name;
     const photo = data.photo;
     const contact = data.contact;
     const userId = adminUser._id;
 
-    updateUserProfile(organizerName, photo);
-    setUser({ ...user, photoURL: photo, displayName: organizerName });
+    updateUserProfile(participantName, photo);
+    setUser({ ...user, photoURL: photo, displayName: participantName });
 
     const updateInfo = {
-      name: organizerName,
+      name: participantName,
       photo: photo,
       contact: contact,
     };
@@ -65,17 +65,17 @@ const OrganizerProfile = () => {
         <figure>
           <img
             src={user?.photoURL}
-            className="rounded-xl max-w-fit"
+            className="rounded-xl w-24"
             alt={adminUser?.name}
           />
         </figure>
         <div className="card-body">
           <h2 className="card-title">
-            Organizer Name:{" "}
+            Participant Name:{" "}
             <span className="text-green-900">{adminUser?.name}</span>
           </h2>
           <h2 className="card-title">
-            Organizer Email:{" "}
+            Participant Email:{" "}
             <span className="text-green-900">{adminUser?.email}</span>
           </h2>
           <h2 className="card-title">
@@ -110,24 +110,24 @@ const OrganizerProfile = () => {
                       className="w-full px-3 py-2 border rounded-md border-gray-700 bg-gray-900 text-gray-100 focus:border-violet-400"
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="mt-2">
                     <label
                       htmlFor="age"
-                      className="block text-green-900 font-bold"
+                      className="block mb-1 text-green-900 font-bold"
                     >
-                      Organizer Name
+                      Participant Name
                     </label>
                     <input
                       type="text"
                       {...register("name")}
-                      defaultValue={adminName}
+                      defaultValue={adminUser?.name}
                       className="w-full px-3 py-2 border rounded-md border-gray-700 bg-gray-900 text-gray-100 focus:border-violet-400"
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="mt-2">
                     <label
                       htmlFor="age"
-                      className="block text-green-900 font-bold"
+                      className="block mb-1 text-green-900 font-bold"
                     >
                       Contact Information
                     </label>
@@ -167,4 +167,4 @@ const OrganizerProfile = () => {
   );
 };
 
-export default OrganizerProfile;
+export default ParticipantProfile;

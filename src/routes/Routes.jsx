@@ -14,6 +14,7 @@ import ManageCamps from "../layout/ManageCamps/ManageCamps";
 import UpdateCamp from "../layout/UpdateCamp/UpdateCamp";
 import Welcome from "../layout/Welcome/Welcome";
 import Analytics from "../layout/Analytics/Analytics";
+import ParticipantProfile from "../layout/ParticipantProfile/ParticipantProfile";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Analytics></Analytics>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "participant-profile",
+        element: (
+          <PrivateRoute>
+            <ParticipantProfile></ParticipantProfile>
           </PrivateRoute>
         ),
       },
