@@ -14,9 +14,10 @@ const useParticipant = () => {
   } = useQuery({
     queryKey: ["participant"],
     queryFn: async () => {
-      const response = await axiosSecure.get(`/participant/${user?.email}`, {
-        withCredentials: true,
-      });
+      const response = await axiosSecure.get(
+        `/participant?email=${user?.email}`,
+        { withCredentials: true }
+      );
       const data = await response.data;
       return data;
     },
