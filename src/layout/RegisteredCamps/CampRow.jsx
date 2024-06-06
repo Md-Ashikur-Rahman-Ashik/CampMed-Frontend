@@ -1,6 +1,7 @@
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 const CampRow = ({ vol, refetch }) => {
   const paymentStatus = vol.paymentStatus;
@@ -67,7 +68,11 @@ const CampRow = ({ vol, refetch }) => {
       <td className="md:text-xl">${vol.campFees}</td>
       <td className="md:text-xl">{vol.participantName}</td>
       <td className="md:text-xl">
-        {paymentStatus === "Paid" ? "Paid" : "Pay"}
+        <Link to={"/dashboard/payment"}>
+          <button className="btn btn-ghost font-bold">
+            {paymentStatus === "Paid" ? "Paid" : "Pay"}
+          </button>
+        </Link>
       </td>
       <td className="md:text-xl">{confirmation ? confirmation : ""}</td>
       <td className="md:text-xl">

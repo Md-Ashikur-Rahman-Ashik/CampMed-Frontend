@@ -17,6 +17,7 @@ import Analytics from "../layout/Analytics/Analytics";
 import ParticipantProfile from "../layout/ParticipantProfile/ParticipantProfile";
 import RegisteredCamps from "../layout/RegisteredCamps/RegisteredCamps";
 import ManageRegisteredCamps from "../layout/ManageRegisteredCamps/ManageRegisteredCamps";
+import Payment from "../layout/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -125,6 +126,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <RegisteredCamps></RegisteredCamps>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
           </PrivateRoute>
         ),
       },
