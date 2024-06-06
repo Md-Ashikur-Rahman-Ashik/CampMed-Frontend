@@ -40,6 +40,8 @@ const CampDetails = () => {
     const age = parseInt(data.age);
     const phoneNumber = parseInt(data.phoneNumber);
     const emergency = parseInt(data.emergency);
+    const paymentStatus = "Unpaid";
+    const confirmation = "Pending";
 
     const handleIncrease = () => {
       axios.put(`http://localhost:5000/participant/${_id}`, {
@@ -57,6 +59,8 @@ const CampDetails = () => {
       age,
       phoneNumber,
       emergency,
+      paymentStatus,
+      confirmation,
     };
 
     axios

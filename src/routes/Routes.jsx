@@ -16,6 +16,7 @@ import Welcome from "../layout/Welcome/Welcome";
 import Analytics from "../layout/Analytics/Analytics";
 import ParticipantProfile from "../layout/ParticipantProfile/ParticipantProfile";
 import RegisteredCamps from "../layout/RegisteredCamps/RegisteredCamps";
+import ManageRegisteredCamps from "../layout/ManageRegisteredCamps/ManageRegisteredCamps";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,14 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/camp/${params.id}`),
+      },
+      {
+        path: "manage-registered-camps",
+        element: (
+          <AdminRoute>
+            <ManageRegisteredCamps></ManageRegisteredCamps>
+          </AdminRoute>
+        ),
       },
       // General Route
       {

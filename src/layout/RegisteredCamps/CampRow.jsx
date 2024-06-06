@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 
 const CampRow = ({ vol, refetch }) => {
+  const paymentStatus = vol.paymentStatus;
+  const confirmation = vol.confirmation;
   const {
     register,
     handleSubmit,
@@ -65,8 +66,10 @@ const CampRow = ({ vol, refetch }) => {
       <td className="md:text-xl">{vol.campName}</td>
       <td className="md:text-xl">${vol.campFees}</td>
       <td className="md:text-xl">{vol.participantName}</td>
-      <td className="md:text-xl">Pay</td>
-      <td className="md:text-xl">Pending</td>
+      <td className="md:text-xl">
+        {paymentStatus === "Paid" ? "Paid" : "Pay"}
+      </td>
+      <td className="md:text-xl">{confirmation ? confirmation : ""}</td>
       <td className="md:text-xl">
         <button
           onClick={() => handleDelete(vol._id)}
