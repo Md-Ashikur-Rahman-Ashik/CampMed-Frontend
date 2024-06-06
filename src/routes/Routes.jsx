@@ -15,6 +15,7 @@ import UpdateCamp from "../layout/UpdateCamp/UpdateCamp";
 import Welcome from "../layout/Welcome/Welcome";
 import Analytics from "../layout/Analytics/Analytics";
 import ParticipantProfile from "../layout/ParticipantProfile/ParticipantProfile";
+import RegisteredCamps from "../layout/RegisteredCamps/RegisteredCamps";
 
 const router = createBrowserRouter([
   {
@@ -107,6 +108,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ParticipantProfile></ParticipantProfile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "registered-camps",
+        element: (
+          <PrivateRoute>
+            <RegisteredCamps></RegisteredCamps>
           </PrivateRoute>
         ),
       },

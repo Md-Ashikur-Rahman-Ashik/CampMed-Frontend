@@ -57,6 +57,8 @@ const ParticipantProfile = () => {
         });
       }
     });
+
+    axiosSecure.patch(`/participant/${adminUser?.email}`, updateInfo);
   };
 
   return (

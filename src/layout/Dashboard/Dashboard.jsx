@@ -6,6 +6,7 @@ import { MdManageAccounts, MdOutlineManageAccounts } from "react-icons/md";
 import { GiAmericanFootballPlayer } from "react-icons/gi";
 import { PiCampfireFill } from "react-icons/pi";
 import { FaHistory } from "react-icons/fa";
+import { IoHomeOutline } from "react-icons/io5";
 
 const Dashboard = () => {
   // Get admin value from the database
@@ -87,6 +88,11 @@ const Dashboard = () => {
               </li>
             </>
           )}
+          <li>
+            <NavLink className={"font-bold text-green-900"} to={"/"}>
+              <IoHomeOutline /> Home
+            </NavLink>
+          </li>
         </ul>
       </div>
       <div className="md:p-8 p-2 flex-1">

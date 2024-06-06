@@ -11,7 +11,6 @@ const OrganizerProfile = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
   const axiosSecure = useAxiosSecure();
