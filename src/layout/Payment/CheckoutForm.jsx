@@ -78,11 +78,33 @@ const CheckoutForm = () => {
       });
     } else {
       setError("");
-      Swal.fire({
-        title: "Success!",
-        text: "Your payment has been successful",
-        icon: "success",
+      refetch();
+    }
+
+    // Confirm payment
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            email: user?.email || "Anonymous",
+            name: user.displayName || "Anonymous",
+          },
+        },
       });
+
+    if (confirmError) {
+      console.log("Confirm Error");
+    } else {
+      // console.log("Payment Intent");
+      if (paymentIntent.status === "succeeded") {
+        console.log(paymentIntent)
+        Swal.fire({
+          title: "Success!",
+          text: "Your payment has been successful",
+          icon: "success",
+        });
+      }
     }
   };
 
