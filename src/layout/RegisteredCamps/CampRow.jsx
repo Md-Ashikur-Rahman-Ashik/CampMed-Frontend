@@ -68,11 +68,17 @@ const CampRow = ({ vol, refetch }) => {
       <td className="md:text-xl">${vol.campFees}</td>
       <td className="md:text-xl">{vol.participantName}</td>
       <td className="md:text-xl">
-        <Link to={"/dashboard/payment"}>
+        {paymentStatus !== "Paid" ? (
+          <Link to={`/dashboard/payment/${vol._id}`}>
+            <button className="btn btn-ghost font-bold">
+              {paymentStatus === "Paid" ? "Paid" : "Pay"}
+            </button>
+          </Link>
+        ) : (
           <button className="btn btn-ghost font-bold">
             {paymentStatus === "Paid" ? "Paid" : "Pay"}
           </button>
-        </Link>
+        )}
       </td>
       <td className="md:text-xl">{confirmation ? confirmation : ""}</td>
       <td className="md:text-xl">
