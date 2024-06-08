@@ -15,30 +15,39 @@ const CampRow = ({ vol, refetch }) => {
   const axiosSecure = useAxiosSecure();
 
   const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure
-          .delete(`/participant-camp/${id}`, { withCredentials: true })
-          .then((res) => {
-            if (res.data.deletedCount > 0) {
-              refetch();
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your participation request has been deleted.",
-                icon: "success",
-              });
-            }
-          });
-      }
-    });
+    if (paymentStatus === "Paid") {
+      // Can't Delete
+      Swal.fire({
+        title: "Sorry!",
+        text: "Your participation request can't be deleted.",
+        icon: "error",
+      });
+    } else {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axiosSecure
+            .delete(`/participant-camp/${id}`, { withCredentials: true })
+            .then((res) => {
+              if (res.data.deletedCount > 0) {
+                refetch();
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your participation request has been deleted.",
+                  icon: "success",
+                });
+              }
+            });
+        }
+      });
+    }
   };
 
   const onSubmit = (data) => {
