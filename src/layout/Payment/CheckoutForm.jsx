@@ -101,7 +101,7 @@ const CheckoutForm = ({ vol }) => {
       if (paymentIntent.status === "succeeded") {
         Swal.fire({
           title: "Success!",
-          text: "Your payment has been successful",
+          text: `Your payment id is ${paymentIntent.id}`,
           icon: "success",
         });
         const paymentCamp = {

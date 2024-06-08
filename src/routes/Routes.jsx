@@ -18,6 +18,7 @@ import ParticipantProfile from "../layout/ParticipantProfile/ParticipantProfile"
 import RegisteredCamps from "../layout/RegisteredCamps/RegisteredCamps";
 import ManageRegisteredCamps from "../layout/ManageRegisteredCamps/ManageRegisteredCamps";
 import Payment from "../layout/Payment/Payment";
+import PaymentHistory from "../layout/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -138,6 +139,14 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/participants/${params.id}`),
+      },
+      {
+        path: "payment-history",
+        element: (
+          <PrivateRoute>
+            <PaymentHistory></PaymentHistory>
+          </PrivateRoute>
+        ),
       },
     ],
   },

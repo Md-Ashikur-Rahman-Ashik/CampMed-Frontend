@@ -55,7 +55,7 @@ const RegisteredRow = ({ vol, refetch }) => {
         icon: "error",
       });
     } else {
-      console.log(vol._id);
+      // console.log(vol._id);
       axiosSecure
         .patch(`/update-participant/${vol._id}`)
         .then(() => {
