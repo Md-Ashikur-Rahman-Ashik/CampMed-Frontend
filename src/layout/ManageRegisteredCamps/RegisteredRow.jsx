@@ -7,30 +7,38 @@ const RegisteredRow = ({ vol, refetch }) => {
   const confirmation = vol.confirmation;
 
   const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure
-          .delete(`/participant-camp/${id}`, { withCredentials: true })
-          .then((res) => {
-            if (res.data.deletedCount > 0) {
-              refetch();
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your participation request has been deleted.",
-                icon: "success",
-              });
-            }
-          });
-      }
-    });
+    if (paymentStatus === "Paid" && confirmation === "Confirmed") {
+      Swal.fire({
+        title: "Sorry!",
+        text: "Participation request can't be deleted.",
+        icon: "error",
+      });
+    } else {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axiosSecure
+            .delete(`/participant-camp/${id}`, { withCredentials: true })
+            .then((res) => {
+              if (res.data.deletedCount > 0) {
+                refetch();
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your participation request has been deleted.",
+                  icon: "success",
+                });
+              }
+            });
+        }
+      });
+    }
   };
 
   const handlePending = () => {
@@ -40,6 +48,25 @@ const RegisteredRow = ({ vol, refetch }) => {
         text: "Participant hasn't paid yet.",
         icon: "error",
       });
+    } else if (confirmation === "Confirmed") {
+      Swal.fire({
+        title: "Sorry!",
+        text: "Participant already approved.",
+        icon: "error",
+      });
+    } else {
+      console.log(vol._id);
+      axiosSecure
+        .patch(`/update-participant/${vol._id}`)
+        .then(() => {
+          refetch();
+          Swal.fire({
+            title: "Success!",
+            text: "Participant approved successfully.",
+            icon: "success",
+          });
+        })
+        .catch((error) => console.log(error));
     }
   };
 
