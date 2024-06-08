@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
+import "../RegisteredCamps/CampRow.css";
 
 const HistoryRow = ({ vol, refetch }) => {
   const axiosSecure = useAxiosSecure();

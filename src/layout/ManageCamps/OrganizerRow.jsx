@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import "../RegisteredCamps/CampRow.css";
 
 const OrganizerRow = ({ vol, refetch }) => {
   const axiosSecure = useAxiosSecure();

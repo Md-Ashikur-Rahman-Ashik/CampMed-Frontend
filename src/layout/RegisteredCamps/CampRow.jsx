@@ -2,6 +2,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import "./CampRow.css";
 
 const CampRow = ({ vol, refetch }) => {
   const paymentStatus = vol.paymentStatus;

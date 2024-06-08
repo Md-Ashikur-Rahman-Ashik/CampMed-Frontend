@@ -1,0 +1,9 @@
+@media screen and (max-width: 767px) {
+  th {
+    display: none;
+  }
+  td {
+    display: flex;
+    justify-content: center;
+  }
+}
