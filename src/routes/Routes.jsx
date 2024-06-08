@@ -19,11 +19,13 @@ import RegisteredCamps from "../layout/RegisteredCamps/RegisteredCamps";
 import ManageRegisteredCamps from "../layout/ManageRegisteredCamps/ManageRegisteredCamps";
 import Payment from "../layout/Payment/Payment";
 import PaymentHistory from "../layout/PaymentHistory/PaymentHistory";
+import ErrorPage from "../components/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
