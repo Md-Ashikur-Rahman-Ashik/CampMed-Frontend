@@ -1,8 +1,16 @@
+import { useState } from "react";
 import useCampOrganizer from "../../hooks/useCampOrganizer";
 import OrganizerRow from "./OrganizerRow";
+import { useForm } from "react-hook-form";
 
 const ManageCamps = () => {
-  const [organizer, refetch, loading] = useCampOrganizer();
+  const [search, setSearch] = useState("");
+  const [organizer, refetch, loading] = useCampOrganizer(search);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   //   console.log(organizer);
   if (loading) {
     return (
@@ -15,6 +23,10 @@ const ManageCamps = () => {
     );
   }
 
+  const onSubmit = (data) => {
+    setSearch(data.searchText);
+  };
+
   return (
     <div className="card card-compact container rounded-xl mx-auto max-w-fit bg-base-100">
       {organizer?.length === 0 && (
@@ -22,6 +34,21 @@ const ManageCamps = () => {
           Your Camp Posts will be shown here
         </h2>
       )}
+      <div className="flex justify-center">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex gap-4">
+          <input
+            type="text"
+            {...register("searchText")}
+            placeholder="Type here"
+            className="input input-bordered input-success w-full max-w-xs"
+          />
+          <input
+            className="btn bg-green-50 text-green-900 font-bold"
+            type="submit"
+            value="Search"
+          />
+        </form>
+      </div>
       <div className="overflow-auto">
         <table className="table">
           {/* head */}

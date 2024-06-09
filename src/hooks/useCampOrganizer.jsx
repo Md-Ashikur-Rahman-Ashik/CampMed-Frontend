@@ -3,7 +3,7 @@ import { AuthContext } from "../components/AuthProvider/AuthProvider";
 import useAxiosSecure from "./useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
-const useCampOrganizer = () => {
+const useCampOrganizer = (search) => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
 
@@ -14,9 +14,12 @@ const useCampOrganizer = () => {
   } = useQuery({
     queryKey: ["organizer"],
     queryFn: async () => {
-      const response = await axiosSecure.get(`/camp?email=${user?.email}`, {
-        withCredentials: true,
-      });
+      const response = await axiosSecure.get(
+        `/camp?email=${user?.email}&search=${search}`,
+        {
+          withCredentials: true,
+        }
+      );
       const data = await response.data;
       return data;
     },
