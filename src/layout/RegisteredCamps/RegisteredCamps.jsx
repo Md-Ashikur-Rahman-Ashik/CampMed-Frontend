@@ -1,8 +1,16 @@
+import { useState } from "react";
 import useParticipant from "../../hooks/useParticipant";
 import CampRow from "./CampRow";
+import { useForm } from "react-hook-form";
 
 const RegisteredCamps = () => {
-  const [participant, refetch, loading] = useParticipant();
+  const [search, setSearch] = useState("");
+  const [participant, refetch, loading] = useParticipant(search);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   if (loading) {
     return (
@@ -15,6 +23,10 @@ const RegisteredCamps = () => {
     );
   }
 
+  const onSubmit = (data) => {
+    setSearch(data.searchText);
+  };
+
   //   console.log(participant);
 
   return (
@@ -24,6 +36,21 @@ const RegisteredCamps = () => {
           Your registered camps will be shown here
         </h2>
       )}
+      <div className="flex justify-center mb-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex gap-4">
+          <input
+            type="text"
+            {...register("searchText")}
+            placeholder="Type here"
+            className="input input-bordered input-success w-full max-w-xs"
+          />
+          <input
+            className="btn bg-green-50 text-green-900 font-bold"
+            type="submit"
+            value="Search"
+          />
+        </form>
+      </div>
       <div className="overflow-auto">
         <table className="table">
           {/* head */}

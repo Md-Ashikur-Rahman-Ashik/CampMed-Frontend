@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import HistoryRow from "./HistoryRow";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const PaymentHistory = () => {
+  const [search, setSearch] = useState("");
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -12,13 +15,21 @@ const PaymentHistory = () => {
   } = useQuery({
     queryKey: ["history"],
     queryFn: async () => {
-      const response = await axiosSecure.get("/payment-history", {
-        withCredentials: true,
-      });
+      const response = await axiosSecure.get(
+        `/payment-history?search=${search}`,
+        {
+          withCredentials: true,
+        }
+      );
       const data = await response.data;
       return data;
     },
   });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   if (loading) {
     return (
@@ -31,7 +42,11 @@ const PaymentHistory = () => {
     );
   }
 
-//   console.log(history)
+  const onSubmit = (data) => {
+    setSearch(data.searchText);
+  };
+
+  //   console.log(history)
 
   return (
     <div className="card card-compact container rounded-xl mx-auto max-w-fit">
@@ -40,6 +55,21 @@ const PaymentHistory = () => {
           Your payment history will be shown here
         </h2>
       )}
+      <div className="flex justify-center">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex gap-4">
+          <input
+            type="text"
+            {...register("searchText")}
+            placeholder="Type here"
+            className="input input-bordered input-success w-full max-w-xs"
+          />
+          <input
+            className="btn bg-green-50 text-green-900 font-bold"
+            type="submit"
+            value="Search"
+          />
+        </form>
+      </div>
       <div className="overflow-auto">
         <table className="table">
           {/* head */}

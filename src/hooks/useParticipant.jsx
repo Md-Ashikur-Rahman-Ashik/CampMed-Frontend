@@ -3,7 +3,7 @@ import { AuthContext } from "../components/AuthProvider/AuthProvider";
 import useAxiosSecure from "./useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
-const useParticipant = () => {
+const useParticipant = (search) => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
 
@@ -15,7 +15,7 @@ const useParticipant = () => {
     queryKey: ["participant"],
     queryFn: async () => {
       const response = await axiosSecure.get(
-        `/participant?email=${user?.email}`,
+        `/participant?email=${user?.email}&search=${search}`,
         { withCredentials: true }
       );
       const data = await response.data;

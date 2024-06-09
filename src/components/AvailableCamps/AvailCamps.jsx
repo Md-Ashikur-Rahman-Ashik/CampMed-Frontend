@@ -13,7 +13,6 @@ const AvailCamps = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
   if (loading) {
