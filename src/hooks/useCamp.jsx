@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const useCamp = () => {
+const useCamp = (search) => {
   const {
     data: camps,
     refetch,
@@ -9,9 +9,12 @@ const useCamp = () => {
   } = useQuery({
     queryKey: ["camps"],
     queryFn: async () => {
-      const response = await axios.get("http://localhost:5000/camps", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        `http://localhost:5000/camps?search=${search}`,
+        {
+          withCredentials: true,
+        }
+      );
       const data = await response.data;
       return data;
     },
