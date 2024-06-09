@@ -64,7 +64,7 @@ const OrganizerProfile = () => {
         <figure>
           <img
             src={user?.photoURL}
-            className="rounded-xl max-w-fit"
+            className="rounded-xl max-w-[96px]"
             alt={adminUser?.name}
           />
         </figure>
