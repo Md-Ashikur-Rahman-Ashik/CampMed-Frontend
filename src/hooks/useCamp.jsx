@@ -10,7 +10,7 @@ const useCamp = (search) => {
     queryKey: ["camps"],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:5000/camps?search=${search}`,
+        `https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/camps?search=${search}`,
         {
           withCredentials: true,
         }

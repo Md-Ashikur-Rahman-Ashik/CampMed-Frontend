@@ -8,7 +8,7 @@ const PopularMedicalCamps = () => {
   const campsQuery = useQuery({
     queryKey: ["camps"],
     queryFn: async () => {
-      const response = await axios.get("http://localhost:5000/camps", {
+      const response = await axios.get("https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/camps", {
         withCredentials: true,
       });
       const data = await response.data;

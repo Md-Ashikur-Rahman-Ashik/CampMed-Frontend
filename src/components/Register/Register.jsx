@@ -31,7 +31,7 @@ const Register = () => {
         name: data.name,
         email: data.email,
       };
-      axios.post("http://localhost:5000/users", userInfo).then(() => {
+      axios.post("https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/users", userInfo).then(() => {
         Swal.fire({
           position: "top-end",
           icon: "success",

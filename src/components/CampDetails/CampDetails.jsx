@@ -44,7 +44,7 @@ const CampDetails = () => {
     const confirmation = "Pending";
 
     const handleIncrease = () => {
-      axios.put(`http://localhost:5000/participant/${_id}`, {
+      axios.put(`https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/participant/${_id}`, {
         withCredential: true,
       });
     };
@@ -64,7 +64,7 @@ const CampDetails = () => {
     };
 
     axios
-      .post("http://localhost:5000/participant", newParticipant)
+      .post("https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/participant", newParticipant)
       .then((res) => {
         if (res.data.insertedId) {
           handleIncrease();

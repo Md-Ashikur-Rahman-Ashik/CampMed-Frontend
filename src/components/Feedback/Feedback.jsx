@@ -17,7 +17,7 @@ const Feedback = () => {
   } = useQuery({
     queryKey: ["feedbacks"],
     queryFn: async () => {
-      const response = await axios.get("http://localhost:5000/feedback", {
+      const response = await axios.get("https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/feedback", {
         withCredentials: true,
       });
       const data = await response.data;

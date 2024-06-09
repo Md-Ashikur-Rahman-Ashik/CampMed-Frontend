@@ -53,11 +53,16 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         // Get token and store it on the client side
         const userInfo = { email: currentUser.email };
-        axios.post("http://localhost:5000/jwt", userInfo).then((res) => {
-          if (res.data.token) {
-            localStorage.setItem("accessToken", res.data.token);
-          }
-        });
+        axios
+          .post(
+            "https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/jwt",
+            userInfo
+          )
+          .then((res) => {
+            if (res.data.token) {
+              localStorage.setItem("accessToken", res.data.token);
+            }
+          });
       } else {
         //  removed token(if token is stored in the client side)
         localStorage.removeItem("accessToken");
