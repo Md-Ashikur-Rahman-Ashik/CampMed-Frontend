@@ -3,6 +3,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import HistoryRow from "./HistoryRow";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
 
 const PaymentHistory = () => {
   const [search, setSearch] = useState("");
@@ -50,6 +51,9 @@ const PaymentHistory = () => {
 
   return (
     <div className="card card-compact container rounded-xl mx-auto max-w-fit">
+      <Helmet>
+        <title>Payment History | CampMed</title>
+      </Helmet>
       {history.length === 0 && (
         <h2 className="font-bold text-center text-5xl text-green-900">
           Your payment history will be shown here

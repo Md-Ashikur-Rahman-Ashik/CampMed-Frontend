@@ -2,6 +2,7 @@ import { useState } from "react";
 import useParticipant from "../../hooks/useParticipant";
 import CampRow from "./CampRow";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
 
 const RegisteredCamps = () => {
   const [search, setSearch] = useState("");
@@ -31,6 +32,9 @@ const RegisteredCamps = () => {
 
   return (
     <div className="card card-compact container rounded-xl mx-auto max-w-fit">
+      <Helmet>
+        <title>Registered Camps | CampMed</title>
+      </Helmet>
       {participant?.length === 0 && (
         <h2 className="font-bold text-center text-5xl text-green-900">
           Your registered camps will be shown here

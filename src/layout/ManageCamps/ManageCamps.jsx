@@ -2,6 +2,7 @@ import { useState } from "react";
 import useCampOrganizer from "../../hooks/useCampOrganizer";
 import OrganizerRow from "./OrganizerRow";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
 
 const ManageCamps = () => {
   const [search, setSearch] = useState("");
@@ -29,6 +30,9 @@ const ManageCamps = () => {
 
   return (
     <div className="card card-compact container rounded-xl mx-auto max-w-fit bg-base-100">
+      <Helmet>
+        <title>Manage Camps | CampMed</title>
+      </Helmet>
       {organizer?.length === 0 && (
         <h2 className="font-bold text-center text-5xl text-green-900">
           Your Camp Posts will be shown here

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import useParticipant from "../../hooks/useParticipant";
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from "recharts";
 
@@ -36,6 +37,9 @@ const Analytics = () => {
 
   return (
     <div className="card card-compact container rounded-xl mx-auto max-w-fit bg-base-100">
+      <Helmet>
+        <title>Analytics | CampMed</title>
+      </Helmet>
       <h2 className="font-bold mb-10 text-center text-5xl text-green-900">
         Bar Chart Of Camp Fees
       </h2>

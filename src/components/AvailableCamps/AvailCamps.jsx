@@ -4,6 +4,8 @@ import AllCampCard from "./AllCampCard";
 import { useForm } from "react-hook-form";
 import { IoGridSharp } from "react-icons/io5";
 import { BsGrid3X2GapFill } from "react-icons/bs";
+import { ScrollRestoration } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const AvailCamps = () => {
   const [search, setSearch] = useState("");
@@ -44,6 +46,10 @@ const AvailCamps = () => {
 
   return (
     <div className="container p-6 mx-auto">
+      <ScrollRestoration></ScrollRestoration>
+      <Helmet>
+        <title>Available Camps | CampMed</title>
+      </Helmet>
       <div className="flex justify-center">
         <form onSubmit={handleSubmit(onSubmit)} className="flex gap-4">
           <input

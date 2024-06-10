@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import RegisteredRow from "./RegisteredRow";
+import { Helmet } from "react-helmet-async";
 
 const ManageRegisteredCamps = () => {
   const axiosSecure = useAxiosSecure();
@@ -34,6 +35,9 @@ const ManageRegisteredCamps = () => {
 
   return (
     <div className="card card-compact container flex rounded-xl mx-auto max-w-fit bg-base-100">
+      <Helmet>
+        <title>Manage Registered Camps | CampMed</title>
+      </Helmet>
       {participant?.length === 0 && (
         <h2 className="font-bold text-center text-5xl text-green-900">
           All registered camps will be shown here

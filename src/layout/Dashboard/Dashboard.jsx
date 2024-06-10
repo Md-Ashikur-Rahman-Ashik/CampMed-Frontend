@@ -7,6 +7,7 @@ import { GiAmericanFootballPlayer } from "react-icons/gi";
 import { PiCampfireFill } from "react-icons/pi";
 import { FaHistory } from "react-icons/fa";
 import { IoHomeOutline } from "react-icons/io5";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   // Get admin value from the database
@@ -14,6 +15,9 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col md:flex-row">
+      <Helmet>
+        <title>Dashboard | CampMed</title>
+      </Helmet>
       {/* Dashboard sidebar */}
       <div className="md:w-64 md:min-h-screen bg-green-50">
         <ul className="menu p-4">

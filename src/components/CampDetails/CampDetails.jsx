@@ -9,6 +9,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const CampDetails = () => {
   const {
@@ -44,9 +45,12 @@ const CampDetails = () => {
     const confirmation = "Pending";
 
     const handleIncrease = () => {
-      axios.put(`https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/participant/${_id}`, {
-        withCredential: true,
-      });
+      axios.put(
+        `https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/participant/${_id}`,
+        {
+          withCredential: true,
+        }
+      );
     };
 
     const newParticipant = {
@@ -64,7 +68,10 @@ const CampDetails = () => {
     };
 
     axios
-      .post("https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/participant", newParticipant)
+      .post(
+        "https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/participant",
+        newParticipant
+      )
       .then((res) => {
         if (res.data.insertedId) {
           handleIncrease();
@@ -89,6 +96,9 @@ const CampDetails = () => {
   return (
     <div className="container p-6 mx-auto min-h-[calc(100vh-349px)]">
       <ScrollRestoration></ScrollRestoration>
+      <Helmet>
+        <title>Camp Details | CampMed</title>
+      </Helmet>
       <img src={image} className="w-full h-[400px] rounded-xl" alt={campName} />
       <h2 className="mt-4 text-center text-green-500 text-3xl md:text-5xl font-bold mb-5">
         {campName}

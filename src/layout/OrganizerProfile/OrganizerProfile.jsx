@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useUser from "../../hooks/useUser";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const OrganizerProfile = () => {
   const { user, updateUserProfile, setUser } = useContext(AuthContext);
@@ -60,6 +61,9 @@ const OrganizerProfile = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Organizer Profile | CampMed</title>
+      </Helmet>
       <div className="card card-compact container rounded-xl mx-auto max-w-fit bg-base-100">
         <figure>
           <img

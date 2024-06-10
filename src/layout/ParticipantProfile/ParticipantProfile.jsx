@@ -4,6 +4,7 @@ import useUser from "../../hooks/useUser";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ParticipantProfile = () => {
   const { user, updateUserProfile, setUser } = useContext(AuthContext);
@@ -63,6 +64,9 @@ const ParticipantProfile = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Participant Profile | CampMed</title>
+      </Helmet>
       <div className="card card-compact container rounded-xl mx-auto max-w-fit bg-base-100">
         <figure>
           <img

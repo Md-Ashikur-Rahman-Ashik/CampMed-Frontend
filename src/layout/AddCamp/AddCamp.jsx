@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../components/AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const AddCamp = () => {
   const { user } = useContext(AuthContext);
@@ -62,6 +63,9 @@ const AddCamp = () => {
 
   return (
     <div className="card card-compact container rounded-xl mx-auto max-w-fit">
+      <Helmet>
+        <title>Add Camp | CampMed</title>
+      </Helmet>
       <section className="bg-green-50 text-green-900">
         <form
           onSubmit={handleSubmit(onSubmit)}
