@@ -2,7 +2,7 @@
 
 ## Organizer's Credentials
 - **Username**: camp@palestine.com
-- **Password**: CampMed@
+- **Password**: CampMed@P
 
 ## Live Site
 Visit the live site at [CampMed](https://camp-med.web.app)
