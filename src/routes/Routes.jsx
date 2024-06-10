@@ -35,7 +35,9 @@ const router = createBrowserRouter([
         path: "/camp-details/:id",
         element: <CampDetails></CampDetails>,
         loader: ({ params }) =>
-          fetch(`https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/camp/${params.id}`),
+          fetch(
+            `https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/camp/${params.id}`
+          ),
       },
       {
         path: "/login",
@@ -92,7 +94,9 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/${params.id}`),
+          fetch(
+            `https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/camp/${params.id}`
+          ),
       },
       {
         path: "manage-registered-camps",
@@ -140,7 +144,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/participants/${params.id}`),
+          fetch(
+            `https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/participants/${params.id}`
+          ),
       },
       {
         path: "payment-history",
