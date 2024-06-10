@@ -7,6 +7,7 @@ import "./CampRow.css";
 const CampRow = ({ vol, refetch }) => {
   const paymentStatus = vol.paymentStatus;
   const confirmation = vol.confirmation;
+  // console.log(vol.campName)
   const {
     register,
     handleSubmit,
@@ -54,7 +55,7 @@ const CampRow = ({ vol, refetch }) => {
   const onSubmit = (data) => {
     const addFeedback = {
       feedback: data.feedback,
-      campName: vol.campName,
+      // campName: vol.campName,
       participantName: vol.participantName,
       rating: data.rating,
     };

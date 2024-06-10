@@ -17,9 +17,12 @@ const Feedback = () => {
   } = useQuery({
     queryKey: ["feedbacks"],
     queryFn: async () => {
-      const response = await axios.get("https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/feedback", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        "https://b9a12-server-side-md-ashikur-rahman-ashik.vercel.app/feedback",
+        {
+          withCredentials: true,
+        }
+      );
       const data = await response.data;
       return data;
     },
@@ -66,10 +69,7 @@ const Feedback = () => {
               <div className="flex justify-between p-4">
                 <div className="flex space-x-4">
                   <div>
-                    <h4 className="font-bold">{review?.campName}</h4>
-                    <span className="text-xs text-green-900">
-                      {review?.participantName}
-                    </span>
+                    <h4 className="font-bold">{review?.participantName}</h4>
                   </div>
                 </div>
               </div>
