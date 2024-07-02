@@ -21,5 +21,21 @@ Visit the live site at [CampMed](https://camp-med.web.app)
 
 ---
 
-This README file provides a brief overview of CampMed, its features, and access credentials for organizers.
+## If you wish to clone this project on your local environment. You can follow these steps:
+- Clone the project first
+- ## Installation
+
+To install dependencies, run:
+
+```bash
+npm install
+
+```
+To run on local environment, run:
+
+```bash
+npm run dev
+
+```
+
 
